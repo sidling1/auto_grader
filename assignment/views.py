@@ -1,53 +1,41 @@
 from django.forms import BaseModelForm
-from django.shortcuts import render
-from .models import Course
-
-class Assignment:
-    def __init__(self, id):
-        self.id = id
-
-class Courses:
-    def __init__(self, name, code, credits):
-        self.name = name
-        self.code = code
-        self.credits = credits
-        self.assignemts = []
-
-    def display_info(self):
-        print(f"Course Name: {self.name}")
-        print(f"Course Code: {self.code}")
-        print(f"Course Credits: {self.credits}")
+from django.shortcuts import render,get_object_or_404
+from .models import Course,Assignment
 
 def home(request):
+    username = request.user.username
+    print(username)
     context = {
-        'courses': Course.objects.all()
+        'courses': Course.objects.all(),
+        'username':username
     }
     return render(request,'assignment/home.html',context)
 
-def assignment(request):
-    return render(request,'assignment/assignments.html')
+def course_assignments(request, course_id):
+    course = get_object_or_404(Course, code=course_id)
+    assignments = Assignment.objects.filter(course=course)
+    print("Course ID:", course.id)
+    print("Course Name:", course.name)
+    return render(request, 'assignment/assignments.html', {'course':course, 'assignments': assignments})
 
-def homepage(request):
+def submission(request,course_id,assignment_id):
+    user =request.user.username
+    course = get_object_or_404(Course, code=course_id)
+    assignment = Assignment.objects.get(id=assignment_id)
+    print(assignment)
     context={
-        'name': "Siddhant !",
-        'course1' : Courses("Fundamental Comp Sci","CS101",10),
-        'course2' : Courses("Biology","BT001",6)
+        'user':user,
+        'course':course,
+        'assignment':assignment
     }
+    
+    return render(request,'assignment/submit_assignment.html',context)
 
-    return render(request, "assignment/" , context)
 
 
     
  
 
-def assignments(req):
-    ass1 = Assignment(1)
-    ass2 = Assignment(2)
-    ass3 = Assignment(3)
-
-    assignments = [ass1 , ass2 , ass3 ]
-
-    return render(req, "tas/assignment.html" , { 'assignments' : assignments })
 
 
 
