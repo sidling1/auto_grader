@@ -2,14 +2,20 @@
 
 {% block content %}
 <div>
-    <a href="{% url "addstudent" %}">Add Students</a>
+    {% comment %} {{ # course has the course code }}
+    {{ # Ass.pk has the primary key of the assignment -> how to pass without passing into the url ?}} {% endcomment %}
+    <a href="{% url "addstudent" %}">Add Students</a><br/>
+    <a href="{% url "addassignment" course %}">Add Assignment</a>
     <div class="assignments">
         {% for ass in assignments %}
-            <div class="ass content-section">
-                <h1> {{ass.name}} </h1>
-                <h3> Assignment {{ass.id}} </h3>
+        <a href="{% url "submissions" course ass.pk %}">
+            <div class="ass content-section" id="ass{{ ass.pk }}">
+                <h1> {{ass.title}} </h1>
+                <h3> {{ass.due_date}} </h3>
+                <p> {{ass.description}} </p>
             </div>
-        {% endfor %}
+        </a>
+            {% endfor %}
     </div>
 </div>
 {% endblock content %}
