@@ -2,13 +2,13 @@
 
 {% block content %}
 <div>
-    Hey {{ name }}
-    <button>Add Course</button>
+    <h1>Hey {{ name }}</h1>
+    <a href="{% url "addcourse" %}">Add Course</a>
     <div class="courses">
         {% for course in courses %}
-            <div class="course">
-                <h1> {{course.name}} </h1>
-                <h3> {{course.code}} </h3>
+            <div class="course content-section">
+                <h2>{{course.name}}</h2>
+                <p>{{course.code}} </p>
             </div>
         {% endfor %}
     </div>

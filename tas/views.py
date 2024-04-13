@@ -45,3 +45,11 @@ def assignments(req):
 def submissions(req):
 
     return render(req, "tas/submissions.html")
+
+def addCourse(req):
+
+    return render(req, "tas/addCourse.html")
+
+def addStudents(req):
+
+    return render(req, "tas/addStudent.html")
