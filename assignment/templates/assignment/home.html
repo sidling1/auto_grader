@@ -1,11 +1,11 @@
 {% extends 'assignment/base.html'%} {%block content%} {%for course in courses %}
 
 <article class="media content-section">
-     <h2>
-      <a class="article-title" href=""
-        >{{course.name}}</a
-      >
-    </h2>
+  <h2>
+    <a class="article-title" href="{% url 'course_assignments' course.code %}"
+      >{{course.name}}</a
+    >
+  </h2>
 </article>
 
- {% endfor %} {%endblock content%}
+{% endfor %} {%endblock content%}
