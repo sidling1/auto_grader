@@ -23,6 +23,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('home/',include('assignment.urls')),
     path('login/',auth_views.LoginView.as_view(template_name='users/login.html'),name='login'),
-    
-    # path('login/',auth_views.LoginView.as_view(template_name='users/login.html'),name='login'),
+    path('assignment/',include('assignment.urls')),
+    path("tas/",include('tas.urls')),
 ]

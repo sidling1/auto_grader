@@ -1,0 +1,16 @@
+{% extends 'tas/base.html' %}
+
+{% block content %}
+<div>
+    <h1>Hey {{ name }}</h1>
+    <a href="{% url "addcourse" %}">Add Course</a>
+    <div class="courses">
+        {% for course in courses %}
+            <div class="course content-section">
+                <h2>{{course.name}}</h2>
+                <p>{{course.code}} </p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

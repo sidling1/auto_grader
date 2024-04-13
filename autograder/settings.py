@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'assignment.apps.AssignmentConfig',
+    'tas.apps.TasConfig',
     "django.contrib.admin",
     'users.apps.UsersConfig',
     'widget_tweaks',
