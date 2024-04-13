@@ -1,47 +1,11 @@
-{% extends 'assignment/base.html'%} {%block content%} 
-<article class="media content-section">
-  <!-- <img
-    src="{{post.author.profile.image.url}}"
-    class="rounded-circle article-img"
-  />
-  <div class="media-body">
-    <div class="article-metadata">
-      <a class="mr-2" href="#">Avinav Yadav</a>
-      <small class="text-muted">14/04/28</small>
-    </div> -->
-    <h2>
-      <a class="article-title" href=""
-        >Course1</a
-      >
-    </h2>
-    <!-- <p class="article-content">This is Course 1</p> -->
-</article>
+{% extends 'assignment/base.html'%} {%block content%} {%for course in courses %}
+
 <article class="media content-section">
      <h2>
       <a class="article-title" href=""
-        >Course2</a
+        >{{course.name}}</a
       >
     </h2>
 </article>
-<article class="media content-section">
-     <h2>
-      <a class="article-title" href=""
-        >Course3</a
-      >
-    </h2>
-</article>
-<article class="media content-section">
-     <h2>
-      <a class="article-title" href=""
-        >Course4</a
-      >
-    </h2>
-</article>
-<article class="media content-section">
-     <h2>
-      <a class="article-title" href=""
-        >Course5</a
-      >
-    </h2>
-</article>
- {%endblock content%}
+
+ {% endfor %} {%endblock content%}
