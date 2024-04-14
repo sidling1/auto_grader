@@ -1,0 +1,12 @@
+{% extends "tas/base.html" %}
+
+{% block content %}
+<div>
+    <h1>Submissions :</h1>
+    {% for sub in submissions %}
+        <div>
+            <h1>{{sub.student.username}}</h1>
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}

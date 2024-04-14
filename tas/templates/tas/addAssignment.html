@@ -1,0 +1,18 @@
+{% extends "tas/base.html" %}
+
+{% block content %}
+<div class="content-section">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  {# Renders the form fields as paragraphs #}
+        <button type="submit">Submit</button>
+    </form>
+    {% if success %}
+        <div>Successfully Added the Assignment</div>
+    {% endif %}
+
+    {% if error %}
+        <div>Error Occured, try again</div>
+    {% endif %}
+</div>
+{% endblock content %}
