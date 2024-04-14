@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from assignment.models import Course,Assignment
+from assignment.models import Course,Assignment,Submission
 from .forms import AddCourse,AddAssignment
 from django.db import IntegrityError
 
@@ -22,7 +22,10 @@ def course(req, course_code):
 
 def submissions(req, course_code, ass_id):
 
-    return render(req, "tas/submissions.html")
+    ass = Assignment.objects.get(id=ass_id)
+    submissions = Submission.objects.filter(assignment=ass)
+
+    return render(req, "tas/submissions.html" , {'submissions':submissions})
 
 def addCourse(req):
     if req.method == 'POST':

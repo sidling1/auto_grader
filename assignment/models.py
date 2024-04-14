@@ -18,13 +18,13 @@ class Assignment(models.Model):
         return self.title
     
 class Submission(models.Model):
-    student = models.ForeignKey(User, on_delete=models.CASCADE)
-    assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
+    student = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE,null=True)
     submission_details = models.TextField()
     grades = models.FloatField(null=True, blank=True)
 
     def __str__(self):
-        return f"{self.assignment.title} - {self.student.username}"
+        return str(self.id)
 
 
 
