@@ -2,9 +2,7 @@
 
 {% block content %}
 <div>
-    {% comment %} {{ # course has the course code }}
-    {{ # Ass.pk has the primary key of the assignment -> how to pass without passing into the url ?}} {% endcomment %}
-    <a href="{% url "addstudent" %}">Add Students</a><br/>
+    {% comment %} <a href="{% url "addstudent" %}">Add Students</a><br/> {% endcomment %}
     <a href="{% url "addassignment" course %}">Add Assignment</a>
     <div class="assignments">
         {% for ass in assignments %}

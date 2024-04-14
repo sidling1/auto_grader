@@ -3,10 +3,16 @@
 {% block content %}
 <div>
     <h1>Submissions :</h1>
+    
     {% for sub in submissions %}
         <div>
             <h1>{{sub.student.username}}</h1>
+            {% comment %} TODO : Add Feature to set the grade manually {% endcomment %}
+            {% comment %} <a> Grade Manually </a> {% endcomment %}
         </div>
     {% endfor %}
+
+    <a href="{% url "autograder" course_code ass_id %}"> AutoGrader </a> <br/>
+    <a href="{% url "plagcheck" course_code ass_id %}"> Plag Checker </a>
 </div>
 {% endblock content %}

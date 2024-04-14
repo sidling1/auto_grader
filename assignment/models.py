@@ -25,6 +25,12 @@ class Submission(models.Model):
 
     def __str__(self):
         return str(self.id)
+    
+class TAs(models.Model):
+    ta = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    courses = models.ManyToManyField(Course)
 
+    def __str__(self):
+        return self.ta.username
 
 
