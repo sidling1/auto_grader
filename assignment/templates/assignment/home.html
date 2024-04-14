@@ -1,4 +1,9 @@
-{% extends 'assignment/base.html'%} {%block content%} {%for course in courses %}
+{% extends 'assignment/base.html'%} 
+{%block content%} 
+
+<h1> {{req.user.username}} </h1>
+
+{%for course in courses %}
 
 <article class="media content-section">
   <h2>
@@ -8,4 +13,6 @@
   </h2>
 </article>
 
-{% endfor %} {%endblock content%}
+{% endfor %} 
+
+{%endblock content%}

@@ -7,7 +7,11 @@
     {% for sub in submissions %}
         <div>
             <h1>{{sub.student.username}}</h1>
+            
+            <a href="{{ sub.code_file.url }}" download>{{ sub.code_file.name }} </a>
+            
             {% comment %} TODO : Add Feature to set the grade manually {% endcomment %}
+            {% comment %} TODO : Only Single File is supported for now {% endcomment %}
             {% comment %} <a> Grade Manually </a> {% endcomment %}
         </div>
     {% endfor %}

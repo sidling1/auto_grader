@@ -1,7 +1,8 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -15,4 +16,4 @@ urlpatterns = [
     path('autograder/<course_code>/<ass_id>',views.autograder,name='autograder'),
     path('manualgrader/<course_code>/<ass_id>/<sub_id>',views.manualgrader, name='manualgrader'),
     path('plagcheck/<course_code>/<ass_id>',views.plagcheck,name='plagcheck'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

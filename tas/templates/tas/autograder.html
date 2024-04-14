@@ -2,6 +2,9 @@
 
 {% block content %}
 <div>
-    AUTOGRADER WELCOMES YOU
+    {% for line in value %}
+        {{line}}
+        <br>
+    {% endfor %}
 </div>
 {% endblock content %}
