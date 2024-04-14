@@ -7,31 +7,56 @@
   <h2>{{ assignment.title }}</h2>
   <p>{{ assignment.description }}</p>
 
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
+  {% if submission %}
+    <!-- Display existing submission details -->
+    <div class="alert alert-success">
+      <p>You have already submitted your assignment.</p>
+      <!-- Display submission details here -->
+      <!-- Example: -->
+      <p>Submission Details: {{ submission.submission_details }}</p>
+      <p>Grades: {{ submission.grades }}</p>
+      <!-- Display submitted file name -->
+      {% if submission.code_file %}
+        <p>Submitted File: {{ submission.code_file.name }}</p>
+      {% else %}
+        <p>No file submitted.</p>
+      {% endif %}
+      <!-- Add any other submission details you want to display -->
 
-    <!-- Display any form errors -->
-    {% if form.errors %}
-    <div class="alert alert-danger">
-      <ul>
-        {% for field, errors in form.errors.items %}
-        {% for error in errors %}
-        <li>{{ error }}</li>
-        {% endfor %}
-        {% endfor %}
-      </ul>
+      <!-- Button to remove submission -->
+      <form method="post" action="{% url 'remove_submission' submission.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Remove Submission</button>
+      </form>
     </div>
-    {% endif %}
+  {% else %}
+    <!-- Display form to add new submission -->
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
 
-    <!-- Display input file fields -->
-    <div class="form-group">
-      <label for="inputFiles">Upload Files</label>
-      <input type="file" name="input_files" id="inputFiles" multiple class="form-control-file">
-    </div>
+      <!-- Display any form errors -->
+      {% if form.errors %}
+      <div class="alert alert-danger">
+        <ul>
+          {% for field, errors in form.errors.items %}
+          {% for error in errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
 
-    <!-- Optional: Display additional form fields here -->
+      <!-- Display input file fields -->
+      <div class="form-group">
+        <label for="inputFiles">Upload File</label>
+        <input type="file" name="input_file" id="inputFile" class="form-control-file">
+      </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+      <!-- Optional: Display additional form fields here -->
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  {% endif %}
 </div>
 {% endblock %}
